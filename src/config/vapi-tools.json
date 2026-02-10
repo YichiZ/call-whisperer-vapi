@@ -1,0 +1,140 @@
+[
+  {
+    "id": "f85962d6-70ac-4d69-87c1-97fe49a367ae",
+    "type": "function",
+    "function": {
+      "name": "get_customer_info",
+      "description": "Retrieves customer information including name and pet details based on the caller's phone number.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "description": "The caller's phone number"
+          }
+        },
+        "required": ["phone_number"]
+      }
+    }
+  },
+  {
+    "id": "6f586c19-0db1-4228-a244-8ef1961fd7d1",
+    "type": "function",
+    "function": {
+      "name": "get_pet_medical_history",
+      "description": "Retrieves the medical history for a specific pet, including past diagnoses, medications, and visit records.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pet_name": {
+            "type": "string",
+            "description": "The name of the pet"
+          },
+          "owner_name": {
+            "type": "string",
+            "description": "The name of the pet owner"
+          }
+        },
+        "required": ["pet_name", "owner_name"]
+      }
+    }
+  },
+  {
+    "id": "4ac1b029-3dbc-4bab-8b41-7548967b6d1a",
+    "type": "function",
+    "function": {
+      "name": "book_appointment",
+      "description": "Books a veterinary appointment for a pet with a specific veterinarian at a given date and time.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pet_name": {
+            "type": "string",
+            "description": "The name of the pet"
+          },
+          "owner_name": {
+            "type": "string",
+            "description": "The name of the pet owner"
+          },
+          "veterinarian": {
+            "type": "string",
+            "description": "The name of the veterinarian (Dr. Martinez, Dr. Chen, or Dr. Patel)"
+          },
+          "date": {
+            "type": "string",
+            "description": "The appointment date"
+          },
+          "time": {
+            "type": "string",
+            "description": "The appointment time"
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason for the appointment"
+          }
+        },
+        "required": ["pet_name", "owner_name", "veterinarian", "date", "time", "reason"]
+      }
+    }
+  },
+  {
+    "id": "78a13d7f-d19c-4847-9ea0-48ab01fe459e",
+    "type": "function",
+    "function": {
+      "name": "order_medication",
+      "description": "Orders medication for a pet, to be picked up or administered at the clinic.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pet_name": {
+            "type": "string",
+            "description": "The name of the pet"
+          },
+          "owner_name": {
+            "type": "string",
+            "description": "The name of the pet owner"
+          },
+          "medication_name": {
+            "type": "string",
+            "description": "The name of the medication to order"
+          },
+          "dosage": {
+            "type": "string",
+            "description": "The dosage instructions"
+          }
+        },
+        "required": ["pet_name", "owner_name", "medication_name"]
+      }
+    }
+  },
+  {
+    "id": "3fcb1142-bd49-45b3-b6dd-33060c1588ed",
+    "type": "function",
+    "function": {
+      "name": "file_insurance_claim",
+      "description": "Files an insurance claim for a pet's veterinary visit or procedure.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pet_name": {
+            "type": "string",
+            "description": "The name of the pet"
+          },
+          "owner_name": {
+            "type": "string",
+            "description": "The name of the pet owner"
+          },
+          "procedure": {
+            "type": "string",
+            "description": "The procedure or visit to file the claim for"
+          },
+          "insurance_provider": {
+            "type": "string",
+            "description": "The insurance provider name"
+          }
+        },
+        "required": ["pet_name", "owner_name", "procedure"]
+      }
+    }
+  }
+]
