@@ -19,8 +19,8 @@ export function CallButton({ status, onToggle, volumeLevel = 0 }: CallButtonProp
       <AudioWaveform isActive={isActive} getVolume={getVolume} />
       {isActive && (
         <>
-          <span className="absolute h-24 w-24 rounded-full bg-primary/30 animate-pulse-ring" />
-          <span className="absolute h-24 w-24 rounded-full bg-primary/20 animate-pulse-ring [animation-delay:0.5s]" />
+           <span className="absolute h-32 w-32 rounded-full bg-primary/30 animate-pulse-ring" />
+           <span className="absolute h-32 w-32 rounded-full bg-primary/20 animate-pulse-ring [animation-delay:0.5s]" />
         </>
       )}
 
@@ -28,7 +28,7 @@ export function CallButton({ status, onToggle, volumeLevel = 0 }: CallButtonProp
         onClick={onToggle}
         disabled={isConnecting}
         className={`
-          relative z-10 flex h-20 w-20 items-center justify-center rounded-full
+          relative z-10 flex h-28 w-28 items-center justify-center rounded-full
           transition-all duration-300 shadow-lg
           ${isActive
             ? "bg-destructive text-destructive-foreground hover:bg-destructive/90 scale-110"
@@ -39,11 +39,11 @@ export function CallButton({ status, onToggle, volumeLevel = 0 }: CallButtonProp
         `}
       >
         {isConnecting ? (
-          <Phone className="h-8 w-8 animate-pulse" />
+          <Phone className="h-10 w-10 animate-pulse" />
         ) : isActive ? (
-          <MicOff className="h-8 w-8" />
+          <MicOff className="h-10 w-10" />
         ) : (
-          <Mic className="h-8 w-8" />
+          <Mic className="h-10 w-10" />
         )}
       </button>
     </div>
