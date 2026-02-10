@@ -101,9 +101,9 @@ const Index = () => {
                     Start a conversation with the AI vet receptionist
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-col items-center gap-6 py-4">
+                <CardContent className="flex flex-1 flex-col items-center justify-center gap-6 py-8 pb-16">
                   <StatusIndicator status={status} />
-                  <div className="py-4">
+                  <div className="py-6">
                     <CallButton status={status} onToggle={toggleCall} volumeLevel={volumeLevel} />
                   </div>
                 </CardContent>
