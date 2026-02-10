@@ -54,7 +54,7 @@ npm run dev
 
 ## Environment
 
-Managed automatically by Lovable Cloud — no manual `.env` configuration needed.
+Copy `.env.example` to `.env` and fill in the values. Supabase variables are auto-configured by Lovable Cloud. The `VAPI_PRIVATE_KEY` is stored as a Cloud secret (not in `.env`).
 
 ## License
 
