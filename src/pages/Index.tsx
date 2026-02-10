@@ -27,7 +27,7 @@ const Index = () => {
       <div className="mb-10 flex items-center gap-3">
         <PawPrint className="h-8 w-8 text-primary" />
         <h1 className="text-2xl font-bold tracking-tight text-foreground">
-          Pawsome Vet Clinic
+          🐾 Pawsome Pals Veterinary
         </h1>
       </div>
 
