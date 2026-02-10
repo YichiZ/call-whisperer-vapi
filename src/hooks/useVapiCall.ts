@@ -86,7 +86,7 @@ export function useVapiCall() {
   }, []);
 
   const toggleCall = useCallback(() => {
-    if (status === "idle" || status === "ended") {
+    if (status === "idle") {
       startCall();
     } else if (status === "in-progress") {
       endCall();
