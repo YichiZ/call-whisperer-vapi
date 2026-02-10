@@ -1,4 +1,4 @@
-import { PawPrint } from "lucide-react";
+import faviconIcon from "/favicon.png";
 import { CallButton } from "@/components/CallButton";
 import { StatusIndicator } from "@/components/StatusIndicator";
 import { TranscriptArea } from "@/components/TranscriptArea";
@@ -25,7 +25,7 @@ const Index = () => {
     <div className="flex min-h-screen flex-col items-center bg-background px-4 py-10">
       {/* Header */}
       <div className="mb-10 flex items-center gap-3">
-        <PawPrint className="h-8 w-8 text-primary" />
+        <img src={faviconIcon} alt="Pawsome Pals" className="h-10 w-10 rounded-lg" />
         <h1 className="text-2xl font-bold tracking-tight text-foreground">
           🐾 Pawsome Pals Veterinary
         </h1>
