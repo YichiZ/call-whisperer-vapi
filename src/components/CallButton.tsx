@@ -46,16 +46,6 @@ export function CallButton({ status, onToggle, volumeLevel = 0 }: CallButtonProp
           <Mic className="h-8 w-8" />
         )}
       </button>
-
-      <p className="absolute -bottom-10 text-sm font-medium text-muted-foreground whitespace-nowrap">
-        {isConnecting
-          ? "Connecting..."
-          : isActive
-          ? "Tap to end call"
-          : status === "ended"
-          ? "Call ended"
-          : "Tap to call"}
-      </p>
     </div>
   );
 }
