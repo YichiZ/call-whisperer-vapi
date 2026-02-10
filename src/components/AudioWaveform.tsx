@@ -44,7 +44,7 @@ export function AudioWaveform({ isActive, getVolume }: AudioWaveformProps) {
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <svg
         viewBox="0 0 120 120"
-        className="h-36 w-36"
+        className="h-48 w-48"
         style={{ transform: "rotate(-90deg)" }}
       >
         {levels.map((level, i) => {
