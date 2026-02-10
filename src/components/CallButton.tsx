@@ -1,18 +1,22 @@
 import { Mic, MicOff, Phone } from "lucide-react";
 import type { CallStatus } from "@/hooks/useVapiCall";
+import { AudioWaveform } from "@/components/AudioWaveform";
 
 interface CallButtonProps {
   status: CallStatus;
   onToggle: () => void;
+  volumeLevel?: number;
 }
 
-export function CallButton({ status, onToggle }: CallButtonProps) {
+export function CallButton({ status, onToggle, volumeLevel = 0 }: CallButtonProps) {
   const isActive = status === "in-progress";
   const isConnecting = status === "connecting";
+  const getVolume = () => volumeLevel;
 
   return (
     <div className="relative flex items-center justify-center">
-      {/* Pulse rings when active */}
+      {/* Audio waveform */}
+      <AudioWaveform isActive={isActive} getVolume={getVolume} />
       {isActive && (
         <>
           <span className="absolute h-24 w-24 rounded-full bg-primary/30 animate-pulse-ring" />
