@@ -98,14 +98,18 @@ const Index = () => {
                 <CardHeader>
                   <CardTitle>Voice Call</CardTitle>
                   <CardDescription>
-                    Start a conversation with the AI vet receptionist
+                    {status === "connecting"
+                      ? "Connecting..."
+                      : status === "in-progress"
+                      ? "Tap the mic to end the call"
+                      : status === "ended"
+                      ? "Call ended"
+                      : "Tap the mic to start a call"}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col items-center justify-center gap-6 py-8 pb-16">
+                <CardContent className="flex flex-1 flex-col items-center justify-center gap-6 py-8">
                   <StatusIndicator status={status} />
-                  <div className="py-6">
-                    <CallButton status={status} onToggle={toggleCall} volumeLevel={volumeLevel} />
-                  </div>
+                  <CallButton status={status} onToggle={toggleCall} volumeLevel={volumeLevel} />
                 </CardContent>
               </Card>
 
