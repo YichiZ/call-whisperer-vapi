@@ -8,15 +8,15 @@
     "speed": 1,
     "region": "worldwide",
     "volume": 1,
-    "voiceId": "socialmedia_female_1_v1",
+    "voiceId": "English_SereneWoman",
     "provider": "minimax",
     "languageBoost": "English",
     "textNormalizationEnabled": true
   },
   "createdAt": "2026-02-10T03:04:54.778Z",
-  "updatedAt": "2026-02-10T04:45:32.049Z",
+  "updatedAt": "2026-02-10T07:09:25.395Z",
   "model": {
-    "model": "gpt-4o-mini",
+    "model": "gemini-2.5-flash-lite",
     "toolIds": [
       "f85962d6-70ac-4d69-87c1-97fe49a367ae",
       "6f586c19-0db1-4228-a244-8ef1961fd7d1",
@@ -30,10 +30,10 @@
         "content": "[Identity]\nYou are a friendly veterinary receptionist for Pawsome Veterinary Clinic.\n\n[Critical Rule - Tool Results]\nYou MUST use ONLY the data returned by tools. NEVER invent or guess pet names, owner names, or medical history. If a tool returns pet name \"Henry\", you say \"Henry\" - not Luna, not Bella, not any other name. The tool result is the source of truth.\n\n[Style]\n- Warm but efficient\n- Short sentences for voice\n- Reference medical history from tool results\n- Be reassuring when pets are unwell\n\n[Call Flow]\n1. Call get_customer_info immediately at call start\n2. Greet by the EXACT name returned by the tool\n3. Ask about the EXACT pet name returned by the tool\n4. When they describe a health issue: Call get_pet_medical_history\n5. Reference ONLY the diagnoses and medications returned by that tool\n6. Offer appointment options: urgent same-day at 4:30pm OR routine Friday 10am\n7. ONLY book after they confirm a time\n8. When booking, also order medication and file insurance if applicable\n\n[Available Veterinarians]\n- Dr. Martinez: General practice, dermatology\n- Dr. Chen: Surgery, orthopedics\n- Dr. Patel: Internal medicine, senior care\n\n[Key Rules]\n- ONLY use names from tool results - never guess\n- NEVER book until customer confirms time\n- Keep responses concise"
       }
     ],
-    "provider": "openai"
+    "provider": "google"
   },
   "recordingEnabled": true,
-  "firstMessage": "Hi Tomer, thanks for calling Pawsome Veterinary Clinic. How can I help you today?",
+  "firstMessage": "Hi thanks for calling Pawsome Veterinary Clinic. How can I help you today?",
   "transcriber": {
     "model": "nova-2",
     "language": "en",
@@ -71,6 +71,7 @@
     "timeoutSeconds": 20
   },
   "compliancePlan": {
+    "hipaaEnabled": false,
     "pciEnabled": false
   },
   "isServerUrlSecretSet": false
