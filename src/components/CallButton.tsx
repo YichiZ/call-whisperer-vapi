@@ -47,7 +47,7 @@ export function CallButton({ status, onToggle, volumeLevel = 0 }: CallButtonProp
         )}
       </button>
 
-      <p className="absolute -bottom-8 text-sm font-medium text-muted-foreground">
+      <p className="absolute -bottom-10 text-sm font-medium text-muted-foreground whitespace-nowrap">
         {isConnecting
           ? "Connecting..."
           : isActive
