@@ -7,7 +7,7 @@ import { useVapiCall } from "@/hooks/useVapiCall";
 import { useCallData } from "@/hooks/useCallData";
 
 const Index = () => {
-  const { status, localTranscripts, toggleCall } = useVapiCall();
+  const { status, localTranscripts, volumeLevel, toggleCall } = useVapiCall();
   const { calls, activeCall, getCallDetails } = useCallData();
 
   // Get transcripts/function calls for the active call
@@ -40,7 +40,7 @@ const Index = () => {
 
         {/* Call Button */}
         <div className="mb-14 flex justify-center">
-          <CallButton status={status} onToggle={toggleCall} />
+          <CallButton status={status} onToggle={toggleCall} volumeLevel={volumeLevel} />
         </div>
 
         {/* Transcript */}

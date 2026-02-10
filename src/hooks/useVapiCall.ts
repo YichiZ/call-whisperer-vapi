@@ -17,6 +17,7 @@ export function useVapiCall() {
   const [status, setStatus] = useState<CallStatus>("idle");
   const [localTranscripts, setLocalTranscripts] = useState<LocalTranscript[]>([]);
   const [activeCallId, setActiveCallId] = useState<string | null>(null);
+  const [volumeLevel, setVolumeLevel] = useState(0);
   const vapiRef = useRef<Vapi | null>(null);
 
   useEffect(() => {
@@ -58,6 +59,10 @@ export function useVapiCall() {
       }
     });
 
+    vapi.on("volume-level", (level: number) => {
+      setVolumeLevel(level);
+    });
+
     vapi.on("error", (err: any) => {
       console.error("VAPI error:", err);
     });
@@ -93,5 +98,5 @@ export function useVapiCall() {
     }
   }, [status, startCall, endCall]);
 
-  return { status, localTranscripts, activeCallId, toggleCall };
+  return { status, localTranscripts, activeCallId, volumeLevel, toggleCall };
 }
