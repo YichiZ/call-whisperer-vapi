@@ -33,11 +33,14 @@ const Index = () => {
     <div className="flex min-h-screen flex-col bg-background">
       {/* Top nav bar */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="mx-auto flex h-14 max-w-5xl items-center gap-3 px-4">
-          <img src={faviconIcon} alt="Pawsome Pals" className="h-8 w-8 rounded-lg" />
-          <h1 className="text-lg font-semibold tracking-tight text-foreground">
-            Pawsome Pals Veterinary
-          </h1>
+        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+          <div className="flex items-center gap-3">
+            <img src={faviconIcon} alt="Pawsome Pals" className="h-8 w-8 rounded-lg" />
+            <h1 className="text-lg font-semibold tracking-tight text-foreground">
+              Pawsome Pals Veterinary
+            </h1>
+          </div>
+          <StatusIndicator status={status} />
         </div>
       </header>
 
@@ -107,8 +110,7 @@ const Index = () => {
                       : "Tap the mic to start a call"}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col items-center justify-center gap-6 py-8">
-                  <StatusIndicator status={status} />
+                <CardContent className="flex flex-1 flex-col items-center justify-center py-8">
                   <CallButton status={status} onToggle={toggleCall} volumeLevel={volumeLevel} />
                 </CardContent>
               </Card>
