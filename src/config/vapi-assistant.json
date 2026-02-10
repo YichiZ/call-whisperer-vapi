@@ -67,7 +67,7 @@
   "responseDelaySeconds": 0.5,
   "firstMessageMode": "assistant-speaks-first",
   "server": {
-    "url": "https://dekpmrpzzvryquyccrdn.supabase.co/functions/v1/vapi-webhook",
+    "url": "https://vxtiasphzzthsnhuakub.supabase.co/functions/v1/vapi-webhook",
     "timeoutSeconds": 20
   },
   "compliancePlan": {
