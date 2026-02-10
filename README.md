@@ -1,73 +1,61 @@
-# Welcome to your Lovable project
+# 🐾 Pawsome Pals Veterinary
 
-## Project info
+A voice-powered AI veterinary receptionist built with VAPI, React, and Lovable Cloud.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## What it does
 
-## How can I edit this code?
+- **AI Voice Calls** — Talk to an AI vet receptionist that can look up customer info, check pet medical history, and book appointments.
+- **Live Transcript** — See the conversation in real-time with chat bubbles and function call cards.
+- **Audio Waveform** — Visual volume indicator reacts to voice input during calls.
+- **Call History** — Browse past calls with expandable transcripts and logs.
+- **Dashboard UI** — Clean shadcn-style layout with stat cards and tabbed navigation.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend**: React, TypeScript, Vite, Tailwind CSS, shadcn/ui
+- **Voice AI**: [VAPI](https://vapi.ai) Web SDK (`@vapi-ai/web`)
+- **Backend**: Lovable Cloud (Supabase) — Edge Functions, Realtime, PostgreSQL
+- **AI Model**: Google Gemini 2.5 Flash Lite (via VAPI)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Architecture
 
-Changes made via Lovable will be committed automatically to this repo.
+```
+Browser (React + VAPI SDK)
+  ├── Starts voice call via VAPI Web SDK
+  ├── Receives local transcripts in real-time
+  └── Subscribes to Supabase Realtime for persisted data
 
-**Use your preferred IDE**
+VAPI Server
+  ├── Manages voice call lifecycle
+  ├── Runs AI assistant (Gemini)
+  └── Sends webhooks to Edge Function
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Edge Function (vapi-webhook)
+  ├── Receives call events (status, transcript, tool-calls)
+  └── Persists data to Supabase tables (calls, transcripts, function_calls)
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Database Tables
 
-Follow these steps:
+| Table | Purpose |
+|-------|---------|
+| `calls` | Call metadata (status, timestamps, vapi_call_id) |
+| `transcripts` | Conversation messages (role, text, timestamps) |
+| `function_calls` | AI tool invocations (function name, parameters) |
+
+## Getting Started
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Environment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Managed automatically by Lovable Cloud — no manual `.env` configuration needed.
 
-**Use GitHub Codespaces**
+## License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+MIT
