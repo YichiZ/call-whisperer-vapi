@@ -1,47 +1,76 @@
 # 🐾 Pawsome Pals Veterinary
 
-A voice-powered AI veterinary receptionist built with VAPI, React, and Lovable Cloud.
+### 🏆 1st Place Hackathon Winner
+
+> AI-powered voice receptionist for veterinary clinics — handles calls, looks up patients, books appointments, and files insurance claims through natural conversation.
+
+---
 
 ## What it does
 
-- **AI Voice Calls** — Talk to an AI vet receptionist that can look up customer info, check pet medical history, and book appointments.
-- **Live Transcript** — See the conversation in real-time with chat bubbles and function call cards.
-- **Audio Waveform** — Visual volume indicator reacts to voice input during calls.
-- **Call History** — Browse past calls with expandable transcripts and logs.
-- **Dashboard UI** — Clean shadcn-style layout with stat cards and tabbed navigation.
+- **AI Voice Receptionist** — Talk to an AI vet receptionist that greets callers by name, checks pet medical history, books appointments, orders medications, and files insurance claims.
+- **Live Transcript** — See the conversation in real-time with chat bubbles and inline function call cards.
+- **Audio Waveform** — Circular volume visualizer reacts to voice input during calls.
+- **Call History** — Browse past calls with expandable transcripts and tool invocation logs.
+- **Dashboard** — Clean shadcn-style layout with stat cards, tabbed navigation, and live status indicator.
 
 ## Tech Stack
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS, shadcn/ui
-- **Voice AI**: [VAPI](https://vapi.ai) Web SDK (`@vapi-ai/web`)
-- **Backend**: Lovable Cloud (Supabase) — Edge Functions, Realtime, PostgreSQL
-- **AI Model**: Google Gemini 2.5 Flash Lite (via VAPI)
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS, shadcn/ui |
+| **Voice AI** | [VAPI](https://vapi.ai) Web SDK (`@vapi-ai/web`) |
+| **Backend** | Lovable Cloud (Supabase) — Edge Functions, Realtime, PostgreSQL |
+| **AI Model** | Google Gemini 2.5 Flash Lite (via VAPI) |
+| **Voice** | MiniMax `English_SereneWoman` (Speech-02-Turbo) |
+| **Transcription** | Deepgram Nova-2 |
 
 ## Architecture
 
 ```
-Browser (React + VAPI SDK)
-  ├── Starts voice call via VAPI Web SDK
-  ├── Receives local transcripts in real-time
-  └── Subscribes to Supabase Realtime for persisted data
-
-VAPI Server
-  ├── Manages voice call lifecycle
-  ├── Runs AI assistant (Gemini)
-  └── Sends webhooks to Edge Function
-
-Edge Function (vapi-webhook)
-  ├── Receives call events (status, transcript, tool-calls)
-  └── Persists data to Supabase tables (calls, transcripts, function_calls)
+┌─────────────────────────────────────────────────────┐
+│  Browser (React + VAPI Web SDK)                     │
+│  ├── Starts/stops voice calls                       │
+│  ├── Renders local transcripts in real-time         │
+│  └── Subscribes to Supabase Realtime for persisted  │
+│      transcripts, function calls & call status      │
+└──────────────┬──────────────────────────────────────┘
+               │ WebRTC
+┌──────────────▼──────────────────────────────────────┐
+│  VAPI Server                                        │
+│  ├── Manages voice call lifecycle                   │
+│  ├── Runs AI assistant (Gemini 2.5 Flash Lite)      │
+│  ├── Invokes tools: get_customer_info,              │
+│  │   get_pet_medical_history, book_appointment,     │
+│  │   order_medication, file_insurance_claim          │
+│  └── Sends webhooks ──►  Edge Function              │
+└──────────────┬──────────────────────────────────────┘
+               │ POST
+┌──────────────▼──────────────────────────────────────┐
+│  Edge Function (vapi-webhook)                       │
+│  ├── status-update  → upsert call record            │
+│  ├── transcript     → insert transcript line        │
+│  ├── tool-calls     → insert function call log      │
+│  └── end-of-call    → mark call ended               │
+└──────────────┬──────────────────────────────────────┘
+               │
+┌──────────────▼──────────────────────────────────────┐
+│  PostgreSQL (Supabase)                              │
+│  ├── calls            (status, timestamps)          │
+│  ├── transcripts      (role, text)                  │
+│  └── function_calls   (name, parameters)            │
+└─────────────────────────────────────────────────────┘
 ```
 
-## Database Tables
+## AI Assistant Tools
 
-| Table | Purpose |
-|-------|---------|
-| `calls` | Call metadata (status, timestamps, vapi_call_id) |
-| `transcripts` | Conversation messages (role, text, timestamps) |
-| `function_calls` | AI tool invocations (function name, parameters) |
+| Tool | Description |
+|------|-------------|
+| `get_customer_info` | Looks up customer & pet details by phone number |
+| `get_pet_medical_history` | Retrieves diagnoses, medications & visit records |
+| `book_appointment` | Schedules a vet appointment (Dr. Martinez, Dr. Chen, Dr. Patel) |
+| `order_medication` | Orders medication for a pet |
+| `file_insurance_claim` | Files an insurance claim for a procedure |
 
 ## Getting Started
 
