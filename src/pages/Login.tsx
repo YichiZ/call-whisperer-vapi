@@ -66,6 +66,11 @@ const Login = () => {
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Please wait..." : "Sign In"}
             </Button>
+            <a href="https://calendar.app.google/zwcB9EMYnQypw3BW8" target="_blank" rel="noopener noreferrer">
+              <Button type="button" variant="outline" className="w-full">
+                Book a Demo
+              </Button>
+            </a>
           </form>
         </CardContent>
       </Card>
