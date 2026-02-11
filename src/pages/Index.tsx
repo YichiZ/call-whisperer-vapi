@@ -1,18 +1,21 @@
 import faviconIcon from "/favicon.png";
-import { Phone, History, Activity, PhoneCall, Clock } from "lucide-react";
+import { Phone, History, Activity, PhoneCall, Clock, LogOut } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { CallButton } from "@/components/CallButton";
 import { StatusIndicator } from "@/components/StatusIndicator";
 import { TranscriptArea } from "@/components/TranscriptArea";
 import { CallHistory } from "@/components/CallHistory";
 import { useVapiCall } from "@/hooks/useVapiCall";
 import { useCallData } from "@/hooks/useCallData";
+import { useAuth } from "@/hooks/useAuth";
 import { format } from "date-fns";
 
 const Index = () => {
   const { status, localTranscripts, volumeLevel, toggleCall } = useVapiCall();
   const { calls, activeCall, getCallDetails } = useCallData();
+  const { user, signOut } = useAuth();
 
   const activeDetails = activeCall ? getCallDetails(activeCall.id) : undefined;
   const dbTranscripts = activeDetails?.transcripts || [];
@@ -40,7 +43,13 @@ const Index = () => {
               Pawsome Pals Veterinary
             </h1>
           </div>
-          <StatusIndicator status={status} />
+          <div className="flex items-center gap-3">
+            <StatusIndicator status={status} />
+            <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
+            <Button variant="ghost" size="icon" onClick={signOut} title="Sign out">
+              <LogOut className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </header>
 
