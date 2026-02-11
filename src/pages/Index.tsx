@@ -1,5 +1,6 @@
 import faviconIcon from "/favicon.png";
 import { Phone, History, Activity, PhoneCall, Clock, LogOut } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -46,6 +47,7 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <StatusIndicator status={status} />
             <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
+            <ThemeToggle />
             <Button variant="ghost" size="icon" onClick={signOut} title="Sign out">
               <LogOut className="h-4 w-4" />
             </Button>
