@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Bot, ClipboardList, Shield, ArrowRight } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import faviconIcon from "/favicon.png";
 
 const features = [
@@ -39,11 +40,14 @@ const Landing = () => {
               Pawsome Pals
             </span>
           </div>
-          <Link to="/login">
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link to="/login">
+              <Button variant="outline" size="sm">
+                Sign In
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
 
