@@ -63,9 +63,14 @@ const Landing = () => {
         <div className="mt-8 flex gap-4">
           <Link to="/login">
             <Button size="lg" className="gap-2">
-              Get Started <ArrowRight className="h-4 w-4" />
+              Sign In <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
+          <a href="https://calendar.app.google/zwcB9EMYnQypw3BW8" target="_blank" rel="noopener noreferrer">
+            <Button size="lg" variant="outline" className="gap-2">
+              Book a Demo
+            </Button>
+          </a>
         </div>
       </section>
 
